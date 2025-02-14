@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Shipper</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('background-image.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 1280px 720px;
+            font-family: 'Inter', sans-serif;
+            background-color: #7bb9e0;
+            color: black;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-position: center;
+        }
+        .container {
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            margin: 16px auto;
+            width: 80%;
+            max-width: 800px;
+            color: black;
+        }
+        .button {
+            background-color: #f24188;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+        }
+        .button:disabled {
+            background-color: #bbb;
+        }
+        .lock-button {
+            margin-left: 5px;
+            background-color: #9400d3;
+        }
+        .continent-select {
+            margin-top: 10px;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto;
+            width: 80px;
+            height: 80px;
+            margin-bottom: -10px;
+        }
+        .social-media {
+            position: fixed;
+            bottom: 16px;
+            left: 16px;
+            text-align: left;
+            padding: 15px;
+            font-size: 12px;
+        }
+        .social-links {
+            display: block;
+            line-height: 0.5;
+        }
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: black;
+            text-decoration: none;
+        }
+        .social-link img {
+            width: 24px;
+            height: 24px;
+        }
+        .social-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1>Country Shipper</h1>
+
+    <div>
+        <div>
+            <span id="name1" class="bold">...</span>
+            <button class="button lock-button" id="lock1">Lock</button>
+            <div class="batch-select">
+                <label for="batch1">Select Continent:</label>
+                <select id="batch1">
+                    <option value="all">All</option>
+                    <option value="batch1">Asia</option>
+                    <option value="batch2">Europe</option>
+                    <option value="batch3">North America</option>
+                    <option value="batch4">South America</option>
+                    <option value="batch5">Africa</option>
+                    <option value="batch6">Oceania</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <span id="name2" class="bold">...</span>
+            <button class="button lock-button" id="lock2">Lock</button>
+            <div class="batch-select">
+                <label for="batch2">Select Continent:</label>
+                <select id="batch2">
+                    <option value="all">All</option>
+                    <option value="batch1">Asia</option>
+                    <option value="batch2">Europe</option>
+                    <option value="batch3">North America</option>
+                    <option value="batch4">South America</option>
+                    <option value="batch5">Africa</option>
+                    <option value="batch6">Oceania</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <button class="button" id="generateShip">Generate Ship!</button>
+
+    <div>
+        <img src="icons/null.png" alt="Status Icon" id="statusIcon" style="width: 70px; height: 70px; margin: 10px;">
+    </div>
+
+    <div>
+        <span id="status">...</span>
+        <button class="button lock-button" id="lockStatus">Lock</button>
+    </div>
+    <button class="button" id="generateStatus">Generate Status!</button>
+  </div>
+
+  <div class="social-media">
+    <p>Created by <span class="bold">Philippinesball Animations</span></p>
+    <p>Released: <span class="bold">2025-02-14</span></p>
+    <p>Last updated: <span class="bold">2025-02-14</span></p>
+    
+    <p><br>Follow us on:</p>
+    <div class="social-links">
+      <a href="https://www.youtube.com/@philippinesballanimations" class="social-link" target="_blank">
+        <img src="socmed/youtube.png" alt="YouTube"> <span class="bold">YouTube</span>
+      </a><br>
+      <a href="https://www.tiktok.com/@philippinesballanimation" class="social-link" target="_blank">
+        <img src="socmed/tiktok.png" alt="TikTok"> <span class="bold">TikTok</span>
+      </a><br>
+      <a href="https://twitter.com/phballanimation" class="social-link" target="_blank">
+        <img src="socmed/twitter.png" alt="Twitter"> <span class="bold">Twitter</span>
+      </a><br>
+      <a href="https://www.instagram.com/philippinesballanimations" class="social-link" target="_blank">
+        <img src="socmed/instagram.png" alt="Instagram"> <span class="bold">Instagram</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const names = {
+        all: ['Afghanistan','Albania','Algeria','Andorra','Angola','Antigua & Barbuda','Argentina','Armenia','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bhutan','Bolivia','Bosnia & Herzegovina','Botswana','Brazil','Brunei','Bulgaria','Burundi','Burkina Faso','Cambodia','Cameroon','Canada','Cape Verde','Central African Republic','Chad','Chile','China','Colombia','Comoros','Congo Republic','Costa Rica','Croatia','Cuba','Cyprus','Czechia','Dem. Republic of Congo','Denmark','Djibouti','Dominica','Dominican Republic','East Timor','Ecuador','Egypt','El Salvador','Equatorial Guinea','Eritrea','Estonia','Eswatini','Ethiopia','Fiji','Finland','France','Gabon','Gambia','Georgia','Germany','Ghana','Greece','Greenland','Grenada','Guatemala','Guinea','Guinea-Bissau','Guyana','Haiti','Honduras','Hong Kong','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Israel','Italy','Ivory Coast','Jamaica','Japan','Jordan','Kazakhstan','Kenya','Kiribati','Kosovo','Kuwait','Kyrgyzstan','Laos','Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Macao','Madagascar','Malawi','Malaysia','Maldives','Mali','Malta','Marshall Islands','Mauritania','Mauritius','Mexico','Micronesia','Moldova','Monaco','Mongolia','Montenegro','Morocco','Mozambique','Myanmar','Namibia','Nauru','Nepal','Netherlands','New Zealand','Nicaragua','Niger','Nigeria','North Korea','North Macedonia','Norway','Oman','Pakistan','Palau','Palestine','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Poland','Portugal','Qatar','Romania','Russia','Rwanda','Samoa','San Marino','Sao Tome & Principe','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia','Solomon Islands','Somalia','South Africa','South Korea','South Sudan','Spain','Sri Lanka','St. Kitts & Nevis','St. Lucia','St. Vincent & Grenadines','Sudan','Suriname','Sweden','Switzerland','Syria','Taiwan','Tajikistan','Tanzania','Thailand','Togo','Tonga','Trinidad & Tobago','Tunisia','Turkey','Turkmenistan','Tuvalu','Uganda','Ukraine','United Arab Emirates','United Kingdom','United States','Uruguay','Uzbekistan','Vanuatu','Vatican City','Venezuela','Vietnam','Yemen','Zambia','Zimbabwe'],
+        batch1: ['Afghanistan','Armenia','Azerbaijan','Bahrain','Bangladesh','Bhutan','Brunei','Cambodia','China','Cyprus','East Timor','Georgia','Hong Kong','India','Indonesia','Iran','Iraq','Israel','Japan','Jordan','Kazakhstan','Kuwait','Kyrgyzstan','Laos','Lebanon','Macao','Malaysia','Maldives','Mongolia','Myanmar','Nepal','North Korea','Oman','Pakistan','Palestine','Philippines','Qatar','Saudi Arabia','Singapore','South Korea','Sri Lanka','Syria','Taiwan','Tajikistan','Thailand','Turkey','Turkmenistan','United Arab Emirates','Uzbekistan','Vietnam','Yemen'],
+        batch2: ['Albania','Andorra','Austria','Belarus','Belgium','Bosnia & Herzegovina','Bulgaria','Croatia','Czechia','Denmark','Estonia','Finland','France','Germany','Greece','Hungary','Iceland','Ireland','Italy','Kosovo','Latvia','Liechtenstein','Lithuania','Luxembourg','Malta','Moldova','Monaco','Montenegro','Netherlands','North Macedonia','Norway','Poland','Portugal','Romania','Russia','San Marino','Serbia','Slovakia','Slovenia','Spain','Sweden','Switzerland','Ukraine','United Kingdom','Vatican City'],
+        batch3: ['Antigua & Barbuda','Bahamas','Barbados','Belize','Canada','Costa Rica','Cuba','Dominica','Dominican Republic','El Salvador','Greenland','Grenada','Guatemala','Haiti','Honduras','Jamaica','Mexico','Nicaragua','Panama','St. Kitts & Nevis','St. Lucia','St. Vincent & Grenadines','Trinidad & Tobago','United States'],
+        batch4: ['Argentina','Bolivia','Brazil','Chile','Colombia','Ecuador','Guyana','Paraguay','Peru','Suriname','Uruguay','Venezuela'],
+        batch5: ['Algeria','Angola','Benin','Botswana','Burundi','Burkina Faso','Cameroon','Cape Verde','Central African Republic','Chad','Comoros','Congo Republic','Dem. Republic of Congo','Djibouti','Egypt','Equatorial Guinea','Eritrea','Eswatini','Ethiopia','Gabon','Gambia','Ghana','Guinea','Guinea-Bissau','Ivory Coast','Kenya','Lesotho','Liberia','Libya','Madagascar','Malawi','Mali','Mauritania','Mauritius','Morocco','Mozambique','Namibia','Niger','Nigeria','Rwanda','Sao Tome & Principe','Senegal','Seychelles','Sierra Leone','Somalia','South Africa','South Sudan','Sudan','Tanzania','Togo','Tunisia','Uganda','Zambia','Zimbabwe'],
+        batch6: ['Australia','Fiji','Kiribati','Marshall Islands','Micronesia','Nauru','New Zealand','Palau','Papua New Guinea','Samoa','Solomon Islands','Tonga','Tuvalu','Vanuatu']
+    };
+
+    const statuses = [
+        'is friends with',
+        'is allies with',
+        'has a crush on',
+        'misses',
+        'wants to hug',
+        'wants to kiss',
+        'wants to hold hands with',
+        'wants to marry',
+        'is in love with',
+        'is in a relationship with',
+        'wants to unite with',
+        'is rivals with',
+        'hates',
+        'does not care about',
+        'is jealous of',
+        'wants to break up with',
+        'wants to divorce',
+        'is afraid of',
+        'has beef with',
+        'wants to buy',
+        'wants to steal resources from',
+        'wants to terrorize',
+        'wants to go to war with',
+        'wants to invade',
+        'wants to nuke',
+    ];
+
+    let lockName1 = false;
+    let lockName2 = false;
+    let lockStatus = false;
+
+    document.getElementById('lock1').addEventListener('click', () => {
+        lockName1 = !lockName1;
+        document.getElementById('lock1').innerText = lockName1 ? 'Unlock' : 'Lock';
+    });
+
+    document.getElementById('lock2').addEventListener('click', () => {
+        lockName2 = !lockName2;
+        document.getElementById('lock2').innerText = lockName2 ? 'Unlock' : 'Lock';
+    });
+
+    document.getElementById('lockStatus').addEventListener('click', () => {
+        lockStatus = !lockStatus;
+        document.getElementById('lockStatus').innerText = lockStatus ? 'Unlock' : 'Lock';
+    });
+
+    document.getElementById('generateShip').addEventListener('click', () => {
+        const batch1 = document.getElementById('batch1').value;
+        const batch2 = document.getElementById('batch2').value;
+        const selectedNames1 = names[batch1];
+        const selectedNames2 = names[batch2];
+
+        if (!lockName1) {
+            document.getElementById('name1').innerText = 
+                selectedNames1[Math.floor(Math.random() * selectedNames1.length)];
+        }
+
+        if (!lockName2) {
+            document.getElementById('name2').innerText = 
+                selectedNames2[Math.floor(Math.random() * selectedNames2.length)];
+        }
+    });
+
+    function updateStatusIcon(status) {
+        const statusMap = {
+            'is friends with': 'friends',
+            'is allies with': 'allies',
+            'has a crush on': 'crush',
+            'misses': 'miss',
+            'wants to hug': 'hug',
+            'wants to kiss': 'kiss',
+            'wants to hold hands with': 'hands',
+            'wants to marry': 'marry',
+            'is in love with': 'inlove',
+            'is in a relationship with': 'relationship',
+            'wants to unite with': 'unite',
+            'is rivals with': 'rivals',
+            'hates': 'hate',
+            'does not care about': 'notcare',
+            'is jealous of': 'jealous',
+            'wants to break up with': 'breakup',
+            'wants to divorce': 'divorce',
+            'is afraid of': 'afraid',
+            'has beef with': 'beef',
+            'wants to buy': 'buy',
+            'wants to steal resources from': 'steal',
+            'wants to terrorize': 'terrorize',
+            'wants to go to war with': 'war',
+            'wants to invade': 'invade',
+            'wants to nuke': 'nuke'
+        };
+        
+        const iconName = statusMap[status] || 'null';
+        document.getElementById('statusIcon').src = `icons/${iconName}.png`;
+    }
+
+    document.getElementById('generateStatus').addEventListener('click', () => {
+        if (!lockStatus) {
+            const name1 = document.getElementById('name1').innerText;
+            const name2 = document.getElementById('name2').innerText;
+            const status = statuses[Math.floor(Math.random() * statuses.length)];
+            document.getElementById('status').innerHTML = 
+                `<span class="bold">${name1}</span> ${status} <span class="bold">${name2}</span>`;
+            updateStatusIcon(status);
+        }
+    });
+
+    
+  </script>
+</body>
+</html>
